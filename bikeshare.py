@@ -5,7 +5,7 @@ import numpy as np
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
-
+#==========================================================================
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -33,7 +33,7 @@ def get_filters():
         print (e)
     #yesprint('good'*40)
     return city, month, day
-
+#==========================================================================
 
 def load_data(city, month, day):
     """
@@ -54,24 +54,24 @@ def load_data(city, month, day):
     df['day_of_week'] = df['Start Time'].dt.weekday_name
 
     # filter by month if applicable
-    
+
     if month != 'all':
         # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
-       
-     
+
+
         # filter by month to create the new dataframe
-        df = df[df['month'] == month]  
+        df = df[df['month'] == month]
 
     # filter by day of week if applicable
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
-  
+
     return df
 
-
+#==========================================================================
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -86,16 +86,16 @@ def time_stats(df):
     # TO DO: display the most common day of week
     common_day = df['day_of_week'].mode()[0]
     print('the Most Common day of week:', common_day)
-    
+
     # TO DO: display the most common start hour
-    
+
     df['start_hour'] = df['Start Time'].dt.hour
     common_hour = df['start_hour'].mode()[0]
     print('the Most Common start hour:', common_hour)
     #print("\nThis took %s seconds." % (time.time() - start_time))
     #print('-'*40)
 
-
+#==========================================================================
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
@@ -118,7 +118,7 @@ def station_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
+#==========================================================================
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
@@ -136,17 +136,17 @@ def trip_duration_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
+#==========================================================================
 def user_stats(df,city):
     """Displays statistics on bikeshare users."""
- 
+
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
     # TO DO: Display counts of user types
     counts_of_user_types =df['User Type'] .value_counts()
     print('Counts of user types :', counts_of_user_types)
-    
+
     try:
     # TO DO: Display counts of gender
     #df['Gender'] !=NaN:
@@ -158,17 +158,17 @@ def user_stats(df,city):
     try:
      earliest_YOB =  df['Birth Year'].min()
      print('earliest year of birth :', earliest_YOB)
-    
+
      most_recent_YOB =  df['Birth Year'].max()
      print('most recent year of birth :', most_recent_YOB)
-    
-     most_common_YOB = df['Birth Year'].mode()[0] 
+
+     most_common_YOB = df['Birth Year'].mode()[0]
      print('most common year of birth :', most_common_YOB)
     except Exception as e:
         print ('Birth Year : No date aviliable for ', city)
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
+#==========================================================================
 def dispaly_data(df):
     display=input('Whould you like display an overview of the data (yes , No (or any other key)?')
     head_value = 0
@@ -177,23 +177,24 @@ def dispaly_data(df):
             print(df.head(head_value))
             display=input('Whould you like display more data (yes , No (or any other key)?')
 
-
+#==========================================================================
 
 def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-        
+
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df,city)
         dispaly_data(df)
-        
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
-
+#==========================================================================
 
 if __name__ == "__main__":
 	main()
+#==========================================================================
