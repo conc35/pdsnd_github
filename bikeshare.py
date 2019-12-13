@@ -16,16 +16,16 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+
     try:
      city = input(" Choose city from (chicago, new york city,& washington)? ")
      while city not in ['chicago', 'new york city', 'washington']:
            city =input("Incorrect!  Please choose again from (chicago, new york city, washington)? ")
-    # TO DO: get user input for month (all, january, february, ... , june)
+
      month = input("Please choose month from january to june or choose all ? ")
      while month not in ['january', 'february', 'march', 'april', 'may', 'june','all']:
            month =input("Incorrect! Please choose month from january to june or choose all ? ")
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+
      day = input (" Please enter which day of the week ?")
      while day not in ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday','all']:
            day =input("Incorrect! Please enter which day of the week? ")
@@ -54,21 +54,21 @@ def load_data(city, month, day):
     df['day_of_week'] = df['Start Time'].dt.weekday_name
 
     # filter by month if applicable
-    
+
     if month != 'all':
         # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
-       
-     
+
+
         # filter by month to create the new dataframe
-        df = df[df['month'] == month]  
+        df = df[df['month'] == month]
 
     # filter by day of week if applicable
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
-  
+
     return df
 
 
@@ -86,9 +86,9 @@ def time_stats(df):
     # TO DO: display the most common day of week
     common_day = df['day_of_week'].mode()[0]
     print('the Most Common day of week:', common_day)
-    
+
     # TO DO: display the most common start hour
-    
+
     df['start_hour'] = df['Start Time'].dt.hour
     common_hour = df['start_hour'].mode()[0]
     print('the Most Common start hour:', common_hour)
@@ -139,14 +139,14 @@ def trip_duration_stats(df):
 
 def user_stats(df,city):
     """Displays statistics on bikeshare users."""
- 
+
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
     # TO DO: Display counts of user types
     counts_of_user_types =df['User Type'] .value_counts()
     print('Counts of user types :', counts_of_user_types)
-    
+
     try:
     # TO DO: Display counts of gender
     #df['Gender'] !=NaN:
@@ -158,11 +158,11 @@ def user_stats(df,city):
     try:
      earliest_YOB =  df['Birth Year'].min()
      print('earliest year of birth :', earliest_YOB)
-    
+
      most_recent_YOB =  df['Birth Year'].max()
      print('most recent year of birth :', most_recent_YOB)
-    
-     most_common_YOB = df['Birth Year'].mode()[0] 
+
+     most_common_YOB = df['Birth Year'].mode()[0]
      print('most common year of birth :', most_common_YOB)
     except Exception as e:
         print ('Birth Year : No date aviliable for ', city)
@@ -183,13 +183,13 @@ def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-        
+
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df,city)
         dispaly_data(df)
-        
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
