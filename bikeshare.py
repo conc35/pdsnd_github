@@ -16,16 +16,16 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+
     try:
      city = input(" Choose city from (chicago, new york city,& washington)? ")
      while city not in ['chicago', 'new york city', 'washington']:
            city =input("Incorrect!  Please choose again from (chicago, new york city, washington)? ")
-    # TO DO: get user input for month (all, january, february, ... , june)
+
      month = input("Please choose month from january to june or choose all ? ")
      while month not in ['january', 'february', 'march', 'april', 'may', 'june','all']:
            month =input("Incorrect! Please choose month from january to june or choose all ? ")
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+
      day = input (" Please enter which day of the week ?")
      while day not in ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday','all']:
            day =input("Incorrect! Please enter which day of the week? ")
@@ -68,6 +68,8 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
+
+    return df
 
     return df
 
