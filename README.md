@@ -1,7 +1,7 @@
 ### 13/12/2019
-Include the date you created this project and README file.
+Include the date you created this .
 
-### bikeshare udacity
+### bikeshare Udacity project
 
 
 ### second project
