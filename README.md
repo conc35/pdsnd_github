@@ -1,13 +1,13 @@
-### 13th of December 2019
+### 14th of December 2019
 
 
 ### bikeshare Project
 
 
-### This is investigating of three data base
+### This is investigating of three Main data base source
 
 
-### bikeshare - Chicago - New_york_city - washington
+### bikeshare.py - Chicago - New_york_city - washington
 
 
-https://github.com/udacity/pdsnd_github
+### Forced from https://github.com/udacity/pdsnd_github
